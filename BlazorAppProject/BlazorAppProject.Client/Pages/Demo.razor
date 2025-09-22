@@ -1,0 +1,30 @@
+﻿@rendermode InteractiveAuto
+@inject IConfiguration config
+
+
+<h3>Demo</h3>
+<p>
+    Hello everybody
+</p>
+<p >
+    @demoInfoString
+</p>
+
+<p>
+    Current count: @currentCount
+</p>
+<button class="btn btn-outline-primary" @onclick="IncrementCount">INCR COUNT</button>
+
+@code {
+    private int currentCount = 0;
+    private string demoInfoString = "";
+
+    protected override void OnInitialized()
+    {
+        demoInfoString = config["DemoInfo"] ?? "DemoInfoString not found in config.";
+    }
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
